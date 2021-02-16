@@ -1,0 +1,701 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #000;
+  line-height: 1.5;
+}
+
+@mixin button {
+  cursor: pointer;
+  font-size: 16px;
+  width: 115px;
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  margin: 0 10px;
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    background: rgba(#fff, .3);
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+@mixin borders {
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 3px;
+    width: 80%;
+    height: 3px;
+    background: rgba(#fff, .8);
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 80%;
+    background: rgba(#fff, .8);
+  }
+
+
+}
+
+@mixin textBackground {
+  z-index: 1;
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(#000, .65);
+    z-index: -1;
+    filter: blur(4.496px);
+  }
+}
+
+.intro {
+  position: fixed;
+  z-index: 111;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  $color-brand: #ed1c24;
+  $color-loader: #999;
+
+  .loader {
+    animation: spin 3s linear infinite reverse;
+    height: 70px;
+    transform-origin: center center;
+    width: 70px;
+  }
+
+  .loader-cog {
+    fill: $color-loader;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(1turn);
+    }
+
+    to {
+      transform: rotate(0deg);
+    }
+  }
+
+  .first {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0px;
+    width: 100%;
+    background: #111;
+    z-index: 2;
+  }
+
+  .second {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0px;
+    height: 100%;
+    background: #333;
+    z-index: 1;
+  }
+}
+
+.mobile-logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 101;
+  width: 42px;
+  display: none;
+  cursor: pointer;
+  border: 1px solid #f4f4f4;
+
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
+.logo {
+  margin-top: 38px;
+  z-index: 101;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 60.56px;
+  background: #f4f4f4;
+  padding-right: 20px;
+  display: block;
+  transition: all .1s ease-in-out;
+
+  &:hover {
+    background: #222;
+
+    img {
+      &:nth-of-type(1) {
+        opacity: 0;
+      }
+
+      &:nth-of-type(2) {
+        opacity: 1;
+      }
+    }
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 20px);
+    height: 100%;
+    display: block;
+    transition: all .1s ease-in-out;
+
+    &:nth-of-type(2) {
+      opacity: 0;
+    }
+  }
+}
+
+$bar-width: 50px;
+$bar-height: 4px;
+$bar-spacing: 10px;
+
+.hamburger-menu,
+.hamburger-menu:after,
+.hamburger-menu:before {
+  width: $bar-width;
+  height: $bar-height;
+}
+
+.hamb-wrap {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  z-index: 106;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  .hamburger-menu {
+    position: relative;
+    background: rgba(255, 255, 255, .8);
+    transition: all 0ms 300ms;
+
+    &.animate {
+      background: rgba(255, 255, 255, 0);
+    }
+  }
+
+  .hamburger-menu:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: $bar-spacing;
+    background: rgba(255, 255, 255, 1);
+    transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .hamburger-menu:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: $bar-spacing;
+    background: rgba(255, 255, 255, 1);
+    transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .hamburger-menu.animate:after {
+    top: 0;
+    transform: rotate(45deg);
+    transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    ;
+  }
+
+  .hamburger-menu.animate:before {
+    bottom: 0;
+    transform: rotate(-45deg);
+    transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    ;
+  }
+}
+
+
+.mobile-menu {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(#222, .98);
+  z-index: 105;
+
+  .wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .mobile-menu-logo {
+    position: relative;
+    width: 150px;
+    height: 30px;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  span {
+    font-size: 13px;
+    text-align: center;
+    color: darken(#fff, 30%);
+
+    a {
+      text-decoration: underline;
+      color: #fff;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+
+    li {
+      margin: 5px !important;
+
+      &.active {
+        background: rgba(#fff, .3);
+      }
+
+      @include button;
+      color: #f4f4f4;
+    }
+  }
+}
+
+//Nav-bottom
+.desktop-bottom {
+  z-index: 50;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  span {
+    color: darken(#fff, 30%);
+    text-align: end;
+    padding: 30px;
+    font-size: 13px;
+
+    a {
+      text-decoration: underline;
+      color: #fff;
+    }
+  }
+
+
+  .nav-links {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    list-style: none;
+
+    li {
+
+      &.active {
+        background: rgba(#fff, .3);
+      }
+
+      @include button;
+      color: #f4f4f4;
+    }
+  }
+}
+
+.main-slider-nav {
+
+  height: 100%;
+  color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  .main-up {
+    z-index: 60;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+
+  .main-down {
+    z-index: 60;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .main-up,
+  .main-down {
+    padding: 10px 13px;
+    background: rgba(#fff, .0);
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    outline: none;
+
+    &:hover {
+      background: rgba(#fff, .3);
+    }
+
+    &.hide {
+      opacity: 0;
+    }
+  }
+}
+
+//MAIN SLIDER
+.swiper-container#main-swiper {
+  width: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
+
+  .swiper-slide.main {
+    text-align: center;
+    font-size: 18px;
+    color: #f4f4f4;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    background-position: center !important;
+    background-size: cover !important;
+
+    &#home {
+      background: radial-gradient(ellipse at center, rgba(#000, .8), #000000), url('../img/Megatti-Home.webp');
+    }
+
+    &#about {
+      background: radial-gradient(ellipse at center, rgba(#000, .8), #000000), url('../img/Megatti-About.webp');
+    }
+
+    &#services {
+      background: radial-gradient(ellipse at center, rgba(#000, .8), #000000), url('../img/Megatti-Services.webp');
+    }
+
+    &#workshop {
+      background: radial-gradient(ellipse at center, rgba(#000, .8), #000000), url('../img/Megatti-Team.webp');
+    }
+
+    &#clients {
+      background: radial-gradient(ellipse at center, rgba(#000, .8), #000000), url('../img/Megatti-Clients.webp');
+    }
+
+    &#contact {
+      background: radial-gradient(ellipse at center, rgba(#000, .8), #000000), url('../img/Megatti-Contact.webp');
+    }
+  }
+}
+
+.slide-content {
+  overflow: hidden !important;
+  width: 100%;
+  max-width: 1100px;
+  height: 100%;
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s ease-in-out;
+}
+
+//Slides & Content
+#home {
+  @import "home";
+}
+
+#about {
+  @import "about";
+}
+
+#services {
+  @import "services";
+}
+
+#clients {
+  @import "clients";
+}
+
+#contact {
+  @import "contact";
+}
+
+#workshop {
+  @import "workshop";
+}
+
+
+#page-title {
+  display: none;
+  z-index: 99;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 14px;
+  color: #f4f4f4;
+
+  &::before {
+    position: absolute;
+    content: '';
+    left: -22px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 1px;
+    background: #f4f4f4;
+  }
+}
+
+//MEDIA QUERIES
+
+//REMOVE BORDERS
+@media (max-width: 1200px) {
+
+  .slogan,
+  .text-box,
+  .swiper-slide-h {
+    padding: 0px !important;
+
+    &::after,
+    &::before {
+      display: none;
+      padding: unset !important;
+    }
+  }
+
+  p {
+    padding: 10px;
+    font-size: 13px !important;
+    text-align: center !important;
+  }
+}
+
+@media screen and (max-width: 998px) {
+
+  #services .swiper-container,
+  #clients .swiper-container,
+  #workshop .swiper-container {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 450px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .desktop-bottom span {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 945px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 945px) {
+  .desktop-bottom {
+    display: none;
+  }
+
+  #page-title {
+    display: block;
+  }
+
+  .hamb-wrap {
+    display: flex;
+  }
+
+  .logo {
+    margin-top: 20px;
+  }
+
+  .slide-content {
+    padding: 50px 20px 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .logo {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: block;
+  }
+
+  .main-up {
+    top: 70px !important;
+  }
+
+  .contact-form {
+
+    input:focus~label,
+    input:valid~label {
+      top: -13px !important;
+      font-size: 13px;
+      color: #fff;
+    }
+
+    .sub-title {
+      font-size: 20px !important;
+    }
+
+    form {
+      padding: 10px !important;
+    }
+
+    .textareaLabel {
+      font-size: 13px !important;
+    }
+
+    .group {
+      margin-bottom: 20px !important;
+
+      input {
+        font-size: 13px !important;
+      }
+    
+      .errorMsg {
+        font-size: 13px !important;
+      }
+    }
+
+    textarea {
+      font-size: 13px !important;
+      min-height: 100px !important;
+    }
+
+    label {
+      font-size: 13px !important;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+
+  .icons {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: 1fr 1fr 1fr !important;
+    gap: 20px 0px;
+    grid-template-areas:
+      ". ."
+      ". ."
+      ". ." !important;
+
+    div {
+      a {
+        width: 70% !important;
+      }
+    }
+  }
+
+}
+
+@media (orientation: landscape) and (max-width:823px) {
+  .logo {
+    display: none !important;
+  }
+
+  .swiper-container#main-swiper {
+    width: 100%;
+    min-height: 120vh;
+    max-height: 120vh;
+  }
+
+  .slide-content {
+    padding: 50px 20px 50px !important;
+  }
+}
+
+#workshop .slide-wrap {
+  padding: 40px 20px !important;
+}
+
+@media (max-width:450px) {
+  #services .swiper-slide {
+    padding: 20px 0 !important;
+  }
+}
+
+.response {
+  color: #f4f4f4;
+  display: none;
+}

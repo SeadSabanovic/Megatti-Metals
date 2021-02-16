@@ -1,0 +1,19 @@
+.slogan {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  font-size: 21px;
+  font-weight: bold;
+  text-align: center;
+  color: #f4f4f4;
+
+  @include borders;
+
+  h2 {
+    z-index: 1;
+    position: relative;
+    padding: 20px;
+
+    @include textBackground;
+  }
+}

@@ -1,0 +1,129 @@
+.services-slider-nav {
+
+  .services-left,
+  .services-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(#222, .8);
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    outline: none;
+    z-index: 101;
+
+    &:hover {
+      background: rgba(#222, 1);
+    }
+
+    &.hide {
+      opacity: 0;
+    }
+  }
+
+  .services-left {
+    left: 20px !important;
+  }
+
+  .services-right {
+    right: 20px !important;
+  }
+}
+
+.swiper-container-h {
+  width: 100%;
+  height: 100%;
+  max-height: 450px;
+
+  .swiper-slide-h {
+    position: relative;
+    @include borders;
+    padding: 20px;
+
+    .slide-wrap {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      padding: 40px 20px;
+      @include textBackground();
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .title {
+        font-size: 21px;
+        color: #f4f4f4;
+      }
+
+      .container {
+        width: 100%;
+        height: 100%;
+
+        .vertical-menu {
+          z-index: 5;
+          position: absolute;
+          bottom: 20px;
+          left: 0;
+
+          div {
+            background: rgba(#222, .9);
+            z-index: 5;
+            padding: 10px 13px;
+            cursor: pointer;
+            outline: none;
+            transition: all .3s ease;
+
+            &:hover {
+              background: rgba(#222, 1);
+            }
+          }
+        }
+
+        .swiper-container.swiper-container-v {
+          width: 100%;
+          height: 100%;
+
+          .swiper-slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+
+            .title {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              background: rgba(#222, .8);
+              color: #f4f4f4;
+              z-index: 1;
+              font-size: 16px;
+              padding: 10px;
+              font-weight: normal
+            }
+
+            &.franc {
+              img, picture {
+                object-position: left;
+                object-fit: contain;
+              }
+            }
+
+            img, picture {
+              width: 100%;
+              min-height: 230px;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}

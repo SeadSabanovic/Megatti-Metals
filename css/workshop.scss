@@ -1,0 +1,66 @@
+.services-slider-nav {
+  
+  .workshop-left,
+  .workshop-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(#222, .8);
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    outline: none;
+    z-index: 101;
+
+    &:hover {
+      background: rgba(#222, 1);
+    }
+
+    &.hide {
+      opacity: 0;
+    }
+  }
+
+  .workshop-left {
+    left: 20px !important;
+  }
+
+  .workshop-right {
+    right: 20px !important;
+  }
+}
+
+.swiper-container-h {
+  width: 100%;
+  height: 100%;
+  max-height: 450px;
+
+  .swiper-slide-h {
+    position: relative;
+    @include borders;
+    padding: 20px;
+
+    .slide-wrap {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      padding: 20px;
+      @include textBackground();
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      img, picture {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
